@@ -11,9 +11,15 @@ class Node
     curr = self
 
     while curr
-      puts curr.val
+      if curr.next
+        print "(#{curr.val}) -> "
+      else
+        print "#{curr.val}"
+      end
       curr = curr.next
     end
+
+    puts ""
   end
 
 end
@@ -21,6 +27,8 @@ end
 
 
 def main(n)
+  return puts "n can't be 0 or lower (n is #{n})" if n <= 0
+
   head = Node.new(n)
   steps = 0
 
@@ -44,4 +52,4 @@ def main(n)
   head
 end
 
-result = main(26)
+main(341).iterate_rest
