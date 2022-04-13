@@ -8,9 +8,7 @@ class Node
   end
 
   def iterate_rest
-    curr = self
-    puts curr.val
-    puts curr.next.val
+
   end
 
 end
@@ -20,16 +18,18 @@ end
 def main(n)
   head = Node.new(n)
 
+  curr_node = head
   curr = n
   until curr == 1
-    puts curr == 1
 
     if curr % 2 == 0
       curr = (curr * 3) + 1
-      head.next = Node.new(curr)
+      curr_node.next = Node.new(curr)
+      curr_node = curr_node.next
     else
       curr = curr / 2
-      head.next = Node.new(curr)
+      curr_node.next = Node.new(curr)
+      curr_node = curr_node.next
     end
   end
 
