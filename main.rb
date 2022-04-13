@@ -1,3 +1,5 @@
+require 'squid'
+
 class Node
 
   attr_accessor :val, :next, :prev
