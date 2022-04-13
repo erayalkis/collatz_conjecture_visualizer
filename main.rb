@@ -37,16 +37,25 @@ def main(n)
   curr = n
   until curr == 1
     if curr % 2 != 0
+      data[step] = curr
       curr = (curr * 3) + 1
-      steps += 1
+      data[step] = curr if curr == 1
+      step += 1
     else
+      data[step] = curr
       curr = curr / 2
-      steps += 1
+      data[step] = curr if curr == 1
+      step += 1
     end
   end
 
   puts "Took #{step} steps to reach loop"
-  head
+
+  filename = "./out#{Time.new}"
+  Prawn::ManualBuilder::Example.generate(filename) do
+    data = data
+    chart data
+  end
 end
 
-main(341).iterate_rest
+puts main(27)
