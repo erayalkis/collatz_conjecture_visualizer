@@ -8,7 +8,12 @@ class Node
   end
 
   def iterate_rest
+    curr = self
 
+    while curr
+      puts curr.val
+      curr = curr.next
+    end
   end
 
 end
