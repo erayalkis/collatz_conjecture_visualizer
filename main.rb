@@ -27,7 +27,7 @@ def main(n)
   curr = n
   until curr == 1
 
-    if curr % 2 == 0
+    if curr % 2 != 0
       curr = (curr * 3) + 1
       curr_node.next = Node.new(curr)
       curr_node = curr_node.next
@@ -41,6 +41,6 @@ def main(n)
   head
 end
 
-result = main(21)
+result = main(7)
 
 result.iterate_rest
