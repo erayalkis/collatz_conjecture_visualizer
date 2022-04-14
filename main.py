@@ -56,11 +56,12 @@ def chartify_data(data):
 def run_range():
   if len(argv) < 4:
     raise Exception("Please input 2 integers for range values")
-  i = argv[2]
-  while i < argv[3]:
+  i = int(argv[2])
+  while i < int(argv[3]):
     data = get_data(i)
     chartify_data(data)
     time.sleep(1)
+    int += 1
 
 def main():
   check_dirs()
