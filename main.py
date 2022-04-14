@@ -3,7 +3,7 @@ import pandas as pd
 import time
 from os import path, mkdir
 
-def run_math(n: int):
+def get_data(n: int):
   data = []
   step = 1
 
@@ -33,17 +33,16 @@ def check_dirs():
     if not path.exists(directory): mkdir(directory)
 
 def main(n: int):
-  data = run_math(n)
+  data = get_data(n)
 
   chart_data = pd.DataFrame(data)
   fig = px.line(chart_data, y="value", x="step")
   curr_time = time.localtime()
+  time_str = f"{curr_time.tm_mday}-{curr_time.tm_mon}-{curr_time.tm_year}-{curr_time.tm_hour}-{curr_time.tm_min}-{curr_time.tm_sec}"
   
   check_dirs()
 
-  fig.write_image(f"./out_image/{curr_time.tm_year}.png")
-  fig.write_html(f"./out_html/{curr_time.tm_year}.html")
+  fig.write_image(f"./out_image/{time_str}.png")
+  fig.write_html(f"./out_html/{time_str}.html")
 
-  fig.show()
-
-main(27)
+main(21)
