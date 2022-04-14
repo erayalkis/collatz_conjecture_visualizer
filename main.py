@@ -56,8 +56,21 @@ def chartify_data(data):
 def run_range():
   if len(argv) < 4:
     raise Exception("Please input 2 integers for range values")
-  i = int(argv[2])
-  while i <= int(argv[3]):
+  
+  i = None
+  try:
+    i = int(argv[2])
+  except:
+    raise Exception(f"Range start value must be an integer! You passed in: {argv[2]}")
+  
+  limit = None
+  try:
+    limit = int(argv[3])
+  except:
+    raise Exception(f"Range limit value must be an integer! You passed in: {argv[3]}")
+  limit = int(argv[3])
+
+  while i <= limit:
     data = get_data(i)
     chartify_data(data)
     time.sleep(1)
