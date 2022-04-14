@@ -61,7 +61,7 @@ def run_range():
     data = get_data(i)
     chartify_data(data)
     time.sleep(1)
-    int += 1
+    i += 1
 
 def main():
   check_dirs()
