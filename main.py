@@ -3,6 +3,18 @@ import pandas as pd
 import time
 from os import path, mkdir
 
+def get_user_input():
+  user_input = None
+
+  try:
+    user_input = int(input("Please input an integer value:"))
+  except:
+    raise Exception("Input must be an integer!")
+  
+  if user_input <= 0: raise Exception("Input cannot be 0 or lower!")
+
+  return user_input
+
 def get_data(n: int):
   data = []
   step = 1
@@ -42,9 +54,11 @@ def chartify_data(data):
   fig.write_image(f"./out_image/{time_str}.png")
   fig.write_html(f"./out_html/{time_str}.html")
 
-def main(n: int):
+def main():
+  n = get_user_input()
   data = get_data(n)
   check_dirs()
   chartify_data(data)
 
-main(21)
+if __name__ == "__main__":
+  main()
