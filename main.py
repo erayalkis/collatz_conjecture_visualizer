@@ -1,9 +1,11 @@
 import plotly.express as px
 import pandas as pd
+import time
 
-def main(n: int):
+
+def run_math(n: int):
   data = []
-  step = 0
+  step = 1
 
   curr = n
   while curr != 1:
@@ -21,12 +23,19 @@ def main(n: int):
       if curr == 1: 
         print("end")
         data.append({"step": step, "value": curr}) 
+  
+  return data
 
-  
+def main(n: int):
+  data = run_math(n)
+
   chart_data = pd.DataFrame(data)
-  
   fig = px.line(chart_data, y="value", x="step")
+  curr_time = time.localtime()
   
+  fig.write_image(f"./out_image/{curr_time.tm_year}.png")
+  fig.write_html(f"./out_html/{curr_time.tm_year}.html")
+
   fig.show()
 
 main(27)
