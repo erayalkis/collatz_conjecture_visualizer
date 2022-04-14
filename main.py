@@ -2,6 +2,7 @@ import plotly.express as px
 import pandas as pd
 import time
 from os import path, mkdir
+from sys import argv
 
 def get_user_input():
   user_input = None
@@ -52,10 +53,24 @@ def chartify_data(data):
   fig.write_image(f"./out_image/{time_str}.png")
   fig.write_html(f"./out_html/{time_str}.html")
 
+def run_range():
+  if len(argv) < 4:
+    raise Exception("Please input 2 integers for range values")
+  i = argv[2]
+  while i < argv[3]:
+    data = get_data(i)
+    chartify_data(data)
+    time.sleep(1)
+
 def main():
+  check_dirs()
+
+  if "--range" in argv:
+    run_range()
+    return
+  
   n = get_user_input()
   data = get_data(n)
-  check_dirs()
   chartify_data(data)
 
 if __name__ == "__main__":
