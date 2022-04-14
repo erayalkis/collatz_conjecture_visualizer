@@ -32,17 +32,19 @@ def check_dirs():
   for directory in dirs:
     if not path.exists(directory): mkdir(directory)
 
-def main(n: int):
-  data = get_data(n)
-
+def chartify_data(data):
   chart_data = pd.DataFrame(data)
   fig = px.line(chart_data, y="value", x="step")
+
   curr_time = time.localtime()
   time_str = f"{curr_time.tm_mday}-{curr_time.tm_mon}-{curr_time.tm_year}-{curr_time.tm_hour}-{curr_time.tm_min}-{curr_time.tm_sec}"
   
-  check_dirs()
-
   fig.write_image(f"./out_image/{time_str}.png")
   fig.write_html(f"./out_html/{time_str}.html")
+
+def main(n: int):
+  data = get_data(n)
+  check_dirs()
+  chartify_data(data)
 
 main(21)
