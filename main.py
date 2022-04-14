@@ -26,14 +26,12 @@ def get_data(n: int):
       curr = (3 * curr) + 1
       step += 1
       if curr == 1: 
-        print("end")
         data.append({"step": step, "value": curr}) 
     else:
       data.append({"step": step, "value": curr})
       curr = int(curr / 2)
       step += 1
       if curr == 1: 
-        print("end")
         data.append({"step": step, "value": curr}) 
   
   return data
